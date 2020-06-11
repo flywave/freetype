@@ -1,4 +1,4 @@
-module github.com/golang/freetype
+module github.com/flywave/freetype
 
 go 1.13
 
