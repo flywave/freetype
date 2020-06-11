@@ -386,7 +386,7 @@ func (f *Font) Bounds(scale fixed.Int26_6) fixed.Rectangle26_6 {
 func (f *Font) UnicodeBound() []uint32 {
 	size := uint32(0)
 	for _, cm := range f.cm {
-		size += cm.end - cm.start + 1
+		size += (cm.end - cm.start + 1)
 	}
 
 	bound := make([]uint32, size)
