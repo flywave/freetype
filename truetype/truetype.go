@@ -383,6 +383,26 @@ func (f *Font) Bounds(scale fixed.Int26_6) fixed.Rectangle26_6 {
 	return b
 }
 
+func (f *Font) UnicodeBound() []uint32 {
+	size := uint32(0)
+	for _, cm := range f.cm {
+		size += cm.end - cm.start + 1
+	}
+
+	bound := make([]uint32, size)
+
+	index := 0
+	for _, cm := range f.cm {
+		end, start := cm.end, cm.start
+		for start <= end {
+			bound[index] = start
+			index++
+			start++
+		}
+	}
+	return bound
+}
+
 // FUnitsPerEm returns the number of FUnits in a Font's em-square's side.
 func (f *Font) FUnitsPerEm() int32 {
 	return f.fUnitsPerEm
